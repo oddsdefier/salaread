@@ -5,6 +5,7 @@ import DailySalary from "./DailySalary";
 import HourlySalary from "./HourlySalary";
 import HalfMonthSalary from "./HalfMonthSalary";
 import MonthlySalary from "./MonthlySalary";
+import Footer from "./Footer";
 
 export default function App() {
 	const [selectedView, setSelectedView] = useState("daily");
@@ -14,10 +15,10 @@ export default function App() {
 	};
 
 	return (
-		<div className="flex h-screen font-inter flex-col overflow-hidden bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
-			<div className="container mx-auto max-w-3xl px-4 py-8">
+		<div className="flex min-h-screen font-inter flex-col bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
+			<div className="container mx-auto max-w-3xl px-4 py-4 flex-grow">
 				<div className="mb-12 flex items-center justify-between">
-					<h1 className="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 ">Salary Calculator</h1>
+					<h1 className="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200">Salary Calculator</h1>
 				</div>
 				<div className="mb-6 flex flex-col sm:flex-row items-start gap-4">
 					<Select value={selectedView} onValueChange={handleSelectionChange}>
@@ -32,7 +33,6 @@ export default function App() {
 						</SelectContent>
 					</Select>
 				</div>
-
 				<div className="rounded-lg dark:bg-neutral-800 transition-all duration-300 ease-in-out">
 					{selectedView === "daily" && <DailySalary />}
 					{selectedView === "hourly" && <HourlySalary />}
@@ -40,6 +40,7 @@ export default function App() {
 					{selectedView === "monthly" && <MonthlySalary />}
 				</div>
 			</div>
+			<Footer />
 			<Analytics />
 		</div>
 	);

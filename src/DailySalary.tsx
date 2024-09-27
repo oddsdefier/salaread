@@ -45,7 +45,7 @@ export default function DailySalary() {
 		setTimeout(() => setShowTooltip(false), 5000);
 	};
 	return (
-		<div className="min-h-screen flex items-start justify-start">
+		<div className="flex items-start justify-start">
 			<Card className="w-full max-w-md">
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-gray-800">Daily</CardTitle>
