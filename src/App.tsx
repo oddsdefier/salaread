@@ -1,5 +1,5 @@
-iimport { Analytics } from "@vercel/analytics/react"
-mport { useState } from "react";
+import { Analytics } from "@vercel/analytics/react"
+import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DailySalary from "./DailySalary";
 import HourlySalary from "./HourlySalary";
@@ -40,6 +40,8 @@ export default function App() {
           {selectedView === "monthly" && <MonthlySalary />}
         </div>
       </div>
+      <Analytics />
     </div>
   );
+
 }
