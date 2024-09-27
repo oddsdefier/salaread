@@ -50,20 +50,20 @@ export default function HourlySalary() {
 						<Label htmlFor="salary_input" className="text-sm font-medium text-gray-700">
 							What's your <span className="font-bold">monthly </span>salary?
 						</Label>
-							<div className="flex items-center space-x-2">
-								<TooltipProvider>
-									<Tooltip open={showTooltip}>
-										<TooltipTrigger asChild>
-											<div className="w-full">
-												<Input id="salary_input" type="number" placeholder={`e.g. ${formatToPHP(400)}`} value={monthlySalary === null ? "" : monthlySalary} onChange={handleInputChange} className="w-full placeholder:text-gray-400" aria-label="Hourly salary input" />
-											</div>
-										</TooltipTrigger>
-										<TooltipContent>
-											<p>Monthly Salary: {monthlySalary ? formatToPHP(monthlySalary) : "No value"}</p>
-										</TooltipContent>
-									</Tooltip>
-								</TooltipProvider>
-							</div>
+						<div className="flex items-center space-x-2">
+							<TooltipProvider>
+								<Tooltip open={showTooltip}>
+									<TooltipTrigger asChild>
+										<div className="w-full">
+											<Input id="salary_input" type="number" placeholder={`e.g. ${formatToPHP(10000)}`} value={monthlySalary === null ? "" : monthlySalary} onChange={handleInputChange} className="w-full placeholder:text-gray-400" aria-label="Hourly salary input" />
+										</div>
+									</TooltipTrigger>
+									<TooltipContent>
+										<p>Monthly Salary: {monthlySalary ? formatToPHP(monthlySalary) : "No value"}</p>
+									</TooltipContent>
+								</Tooltip>
+							</TooltipProvider>
+						</div>
 					</div>
 
 					<Button onClick={handleCalculate} className="w-full bg-gray-700 text-white hover:bg-gray-800">
