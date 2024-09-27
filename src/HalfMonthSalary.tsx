@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 export default function HalfMonthSalary() {
 	const [hourlySalary, setHourlySalary] = useState<number | null>(null);
 	const [halfMonthlySalary, setHalfMonthlySalary] = useState<number | null>(null);
 	const [dailySalary, setDailySalary] = useState<number | null>(null);
 	const [rateType, setRateType] = useState<string>("daily");
-
+	const [showTooltip, setShowTooltip] = useState(false);
 	const calcHalfMonthlySalaryHourlyBased = (hourlySalary: number): number => {
 		const workingHours: number = 8;
 		const dailySalary = hourlySalary * workingHours;
@@ -48,13 +49,32 @@ export default function HalfMonthSalary() {
 		setRateType(value);
 	};
 
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		if (value === "") {
+			if (rateType === "daily") {
+				setDailySalary(null);
+			} else {
+				setHourlySalary(null);
+			}
+			setTimeout(() => setShowTooltip(false), 100);
+		} else {
+			if (rateType === "daily") {
+				setDailySalary(Number(value));
+			} else {
+				setHourlySalary(Number(value));
+			}
+		}
+		setShowTooltip(true);
+		setTimeout(() => setShowTooltip(false), 5000);
+	};
 	return (
 		<div className="min-h-screen flex items-start justify-start">
 			<Card className="w-full max-w-md">
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-gray-800">Half Month</CardTitle>
 				</CardHeader>
-				<CardContent className="space-y-4">
+				<CardContent className="space-y-3">
 					<div className="flex items-center gap-2">
 						<Label htmlFor="rate-type" className="text-sm font-medium text-gray-700">
 							Based on:
@@ -70,38 +90,26 @@ export default function HalfMonthSalary() {
 						</Select>
 					</div>
 
-					<div className="space-y-2">
-						<Label htmlFor="salary_input" className=" text-sm font-medium text-gray-700">
-							What's your <span className="font-bold">{rateType}</span> salary?
+					<div className="space-y-1">
+						<Label htmlFor="salary_input" className=" text-sm font-medium text-gray-600">
+							What's your <span className="font-bold text-gray-700">{rateType}</span> salary?
 						</Label>
-						<Input
-							id="salary_input"
-							type="number"
-							min="20"
-							max="1000000"
-							placeholder={`e.g. ${rateType === "daily" ? formatToPHP(400) : formatToPHP(50)}`}
-							value={rateType === "daily" ? dailySalary ?? "" : hourlySalary ?? ""}
-							onChange={(e) => {
-								const value = e.target.value;
-								if (value === "") {
-									if (rateType === "daily") {
-										setDailySalary(null);
-									} else {
-										setHourlySalary(null);
-									}
-								} else {
-									if (rateType === "daily") {
-										setDailySalary(Number(value));
-									} else {
-										setHourlySalary(Number(value));
-									}
-								}
-							}}
-							className="w-full placeholder:text-gray-400"
-						/>
+						<div className="flex items-center space-x-2">
+							<TooltipProvider>
+								<Tooltip open={showTooltip}>
+									<TooltipTrigger asChild>
+										<div className="w-full">
+											<Input id="salary_input" type="number" placeholder={`e.g. ${rateType === "daily" ? formatToPHP(400) : formatToPHP(50)}`} value={rateType === "daily" ? dailySalary ?? "" : hourlySalary ?? ""} onChange={handleInputChange} className="w-full placeholder:text-gray-400" aria-label="Hourly salary input" />
+										</div>
+									</TooltipTrigger>
+									<TooltipContent>
+										<p>{`${rateType.charAt(0).toUpperCase() + rateType.slice(1)} Salary: ${formatToPHP(rateType === "daily" ? dailySalary ?? 0 : hourlySalary ?? 0)}`}</p>
+									</TooltipContent>
+								</Tooltip>
+							</TooltipProvider>
+						</div>
 					</div>
 
-					{(hourlySalary ?? dailySalary) && <p className="text-lg font-semibold text-gray-700">{rateType === "daily" ? formatToPHP(dailySalary ?? 0) : formatToPHP(hourlySalary ?? 0)}</p>}
 					<Button onClick={handleCalculate} className="w-full bg-gray-700 text-white hover:bg-gray-800">
 						Calculate
 					</Button>

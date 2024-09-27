@@ -37,12 +37,11 @@ export default function DailySalary() {
 		const value = e.target.value;
 		if (value === "") {
 			setHourlySalary(null);
-			setTimeout(() => setShowTooltip(false), 0);
+			setTimeout(() => setShowTooltip(false), 100);
 		} else {
 			setHourlySalary(Number(value));
 		}
 		setShowTooltip(true);
-		// Hide tooltip after 2 seconds
 		setTimeout(() => setShowTooltip(false), 5000);
 	};
 	return (
@@ -52,7 +51,7 @@ export default function DailySalary() {
 					<CardTitle className="text-2xl font-bold text-gray-800">Daily</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<div className="space-y-4">
+					<div className="space-y-3">
 						<div className="space-y-2">
 							<Label htmlFor="salary_input" className="text-sm font-medium text-gray-700">
 								What's your <span className="font-bold">hourly</span> salary?
