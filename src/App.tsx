@@ -16,7 +16,7 @@ export default function App() {
 
 	return (
 		<div className="flex min-h-screen font-inter flex-col bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
-			<div className="container mx-auto max-w-3xl px-4 py-4 flex-grow">
+			<div className="container mx-auto max-w-3xl px-6 py-6 flex-grow">
 				<div className="mb-12 flex items-center justify-between">
 					<h1 className="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200">Salary Calculator</h1>
 				</div>
