@@ -31,17 +31,17 @@ export default function HourlySalary() {
 		<div className="min-h-screen flex items-start justify-start">
 			<Card className="w-full max-w-md">
 				<CardHeader>
-					<CardTitle className="text-2xl font-bold text-gray-800">Hourly Salary</CardTitle>
+					<CardTitle className="text-2xl font-bold text-gray-800">Hourly</CardTitle>
 				</CardHeader>
 				<CardContent className="space-y-4">
 					<div className="space-y-2">
 						<Label htmlFor="salary_input" className="text-sm font-medium text-gray-700">
-							What's your monthly salary?
+							What's your <span className="font-bold">monthly </span>salary?
 						</Label>
 						<Input
 							id="salary_input"
 							type="number"
-							placeholder="Enter your monthly salary"
+							placeholder={`e.g. ${formatToPHP(10000)}`}
 							value={monthlySalary === null ? "" : monthlySalary}
 							onChange={(e) => {
 								const value = e.target.value;
@@ -51,7 +51,7 @@ export default function HourlySalary() {
 									setMonthlySalary(Number(e.target.value));
 								}
 							}}
-							className="w-full"
+							className="w-full placeholder:text-gray-400"
 						/>
 					</div>
 

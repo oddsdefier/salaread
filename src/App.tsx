@@ -14,12 +14,12 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
-      <div className="container mx-auto max-w-3xl px-6 py-12">
+    <div className="flex h-screen font-inter flex-col overflow-hidden bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
+      <div className="container mx-auto max-w-3xl px-4 py-8">
         <div className="mb-12 flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200">Salary Calculator</h1>
         </div>
-        <div className="mb-8 flex flex-col sm:flex-row items-center gap-4">
+        <div className="mb-6 flex flex-col sm:flex-row items-start gap-4">
           <Select value={selectedView} onValueChange={handleSelectionChange}>
             <SelectTrigger className="w-[200px] bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <SelectValue placeholder="Select view" />
